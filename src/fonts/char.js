@@ -4,10 +4,10 @@ export default class Char {
         this.char = char || ""
         //
         this.fontSize = args.fontSize || 28
+        this.lineHeight = this.fontSize * (args.lineHeight || .75)
         this.scale = args.scale || 1
         this.width = ~~(args.width * this.scale)
         this.height = ~~(args.height * this.scale)
-        this.lineHeight = args.lineHeight || .8
         this.bbox = {}
         this.metrics = {}
         this.path = new Path2D()
@@ -66,6 +66,7 @@ export default class Char {
 
     draw(_ctx, args = {}) {
         _ctx.save()
+        _ctx.translate(0, this.lineHeight)
         if (args.offset_x) _ctx.translate(args.offset_x, 0)
         _ctx.fill(this.path)
         // this.drawBbox(_ctx)

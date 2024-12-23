@@ -1,11 +1,10 @@
+import { loadFont } from './fontloader'
 import './style.css'
-import * as fontkit from 'fontkit';
 import Canvas from "./canvas.js"
 import {
     Buffer
 } from 'buffer'
 import Char from "./fonts/char"
-
 /*
  * REFERENCES
  * https://github.com/github/hubot-sans
@@ -23,7 +22,6 @@ class VFont extends Canvas {
         this.chars = []
         this.font = null
         // Variable Font -->
-        this.fontUrl = '/HubotSans.ttf'
         this.fontSize = 200
         // variation settings
         this.wght = {
@@ -37,21 +35,16 @@ class VFont extends Canvas {
             max: 150
         }, //75-150
         this.scale = 1 / 1024 * this.fontSize // 1024 default set value, see: https://github.com/foliojs/fontkit/blob/13bf703d6c01acbb3d36437ba90c119501186512/test/metadata.js
-        this.loadFont(this.fontUrl)
-        this.animate()
-
-        window.addEventListener('resize', () => this.setSize())
+        //
+        this.fontUrl = '/HubotSans.ttf'
+        loadFont(this.fontUrl).then(font => this.setChars(font))
+        //
         this.setSize()
-    }
-
-    loadFont(_url) {
-        fetch(_url).then(res => res.arrayBuffer()).then(fontBlob => {
-            const font = fontkit.create(new Buffer.from(fontBlob))
-            this.setChars(font) //Set chars with variation
-        })
+        this.animate()
     }
 
     setChars(_font) {
+        this.font = _font
         for (let i = 0; i < this.txt.length; i++) {
             const char = this.txt[i]
             const wdth = ~~(Math.random() * this.wdth.max) + this.wdth.min
@@ -76,6 +69,7 @@ class VFont extends Canvas {
             height: glyph.advanceHeight,
             scale: this.scale,
             bbox: glyph.bbox,
+            lineHeight: .75,
             metrics: glyph._metrics
         })
         this.chars.push(char)
@@ -94,8 +88,6 @@ class VFont extends Canvas {
     }
 
     drawChars(_ctx) {
-        _ctx.save()
-        _ctx.translate(0, this.fontSize * .75)
         let offset_x = 0
         for (let i = 0; i < this.chars.length; i++) {
             const char = this.chars[i]
@@ -104,7 +96,6 @@ class VFont extends Canvas {
             })
             offset_x += char.width
         }
-        _ctx.restore()
     }
     
 }
