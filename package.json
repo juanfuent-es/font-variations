@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "vite": "^6.0.3"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3"
   }
 }
