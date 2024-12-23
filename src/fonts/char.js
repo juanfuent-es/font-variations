@@ -64,4 +64,17 @@ export default class Char {
         return _path
     }
 
+    draw(_ctx) {
+        _ctx.save()
+        _ctx.fill(this.path)
+        this.drawBbox(_ctx)
+        _ctx.restore()
+    }
+
+    // Método para dibujar el cuadro delimitador de un carácter
+    drawBbox(ctx) {
+        ctx.setLineDash([5,15])
+        ctx.strokeRect(this.bbox.minX, this.bbox.minY, this.bbox.maxX, this.bbox.maxY)
+    }
+
 }

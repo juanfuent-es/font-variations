@@ -8,14 +8,14 @@ import Char from "./fonts/char"
 
 /*
  * REFERENCES
+ * https://github.com/github/hubot-sans
  * https://freetype.org/freetype2/docs/glyphs/
  * https://learn.microsoft.com/es-es/typography/opentype/spec/featuretags
  */
 class VFont extends Canvas {
     constructor(_container) {
         super()
-        // this.container = document.querySelector(_container)
-        this.container = document.body
+        this.container = document.querySelector("main")
         this.container.appendChild(this.canvas)
         //
         this.txt = "K"
@@ -25,7 +25,7 @@ class VFont extends Canvas {
         // Variable Font -->
         this.fontUrl = '/HubotSans.ttf'
         this.fontSize = 300
-        this.variable = {
+        this.variation = {
             wght: 900, //200-900
             wdth: 125 //75-150
         }
@@ -41,8 +41,8 @@ class VFont extends Canvas {
         fetch(_url).then(res => res.arrayBuffer()).then(fontBlob => {
             this.font = fontkit.create(new Buffer.from(fontBlob))
             this.variation = this.font.getVariation({
-                "wght": this.variable.wght,
-                "wdth": this.variable.wdth
+                "wght": this.variation.wght,
+                "wdth": this.variation.wdth
             })
             this.setChars(this.variation) //Set chars with variation
         })
@@ -77,20 +77,11 @@ class VFont extends Canvas {
         this.context.strokeStyle = "#FF0"
         this.context.fillStyle = "#FF0"
         this.context.save()
-        this.context.translate(300,300)
+        this.context.translate(0,this.fontSize * .75)
         for (let i = 0; i < this.chars.length; i++) {
-            this.context.save()
-            const char = this.chars[i]
-            this.context.fill(char.path)
-            this.drawBbox(this.context, char.bbox)
-            this.context.restore()
+            this.chars[i].draw(this.context)
         }
         this.context.restore()
-    }
-
-    drawBbox(ctx, bbox) {
-        ctx.setLineDash([5,15])
-        ctx.strokeRect(bbox.minX, bbox.minY, bbox.maxX, bbox.maxY)
     }
     
 }
