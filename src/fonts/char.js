@@ -64,10 +64,11 @@ export default class Char {
         return _path
     }
 
-    draw(_ctx) {
+    draw(_ctx, args = {}) {
         _ctx.save()
+        if (args.offset_x) _ctx.translate(args.offset_x, 0)
         _ctx.fill(this.path)
-        this.drawBbox(_ctx)
+        // this.drawBbox(_ctx)
         _ctx.restore()
     }
 
