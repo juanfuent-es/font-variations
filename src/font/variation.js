@@ -15,11 +15,8 @@ export default class Variation {
     }
 
     setup() {
-        // const glyph = this.font.glyphVariation("A", this.variation)
-        // this.createGlyph(glyph)
-        // Example for text with the same variation. Default variation
         const txt = this.font.textVariation(this.txt, this.variation)
-        for (let i = 0; i < txt.length; i++) this.createGlyph(txt[i], this.variation)
+        for (let i = 0; i < txt.length; i++) this.createGlyph(txt[i])
     }
 
     createGlyph(_glyph) {
@@ -28,9 +25,7 @@ export default class Variation {
             commands: _glyph.path.commands,
             width: _glyph.advanceWidth,
             height: _glyph.advanceHeight,
-            bbox: _glyph.bbox,
-            lineHeight: .75,
-            metrics: _glyph._metrics
+            lineHeight: .75
         })
         this.glyphs.push(glyph)
     }

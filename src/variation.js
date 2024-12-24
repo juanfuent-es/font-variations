@@ -1,19 +1,19 @@
 import './style.css'
+import FontVariation from './font/variation'
 import Canvas from "./components/canvas"
-import VariableFont from './font/variable_font'
-import GlyphMorph from './font/glyph_morph'
-class Variable extends Canvas {
+
+class VariableText extends Canvas {
     constructor(_container) {
         super()
         this.container = document.querySelector("body")
         this.container.appendChild(this.canvas)
         //
-        this.font = new VariableFont('/HubotSans.ttf')
-        this.font.addEventListener('fontloaded', () => this.setup())
-    }
-    
-    setup() {
-        this.glyph_morph = new GlyphMorph('A', this.font)
+        this.variation = new FontVariation({
+            font: '/HubotSans.ttf',
+            txt: 'Hello',
+            wght: 700,
+            wdth: 75
+        })
         this.events()
     }
 
@@ -31,9 +31,9 @@ class Variable extends Canvas {
     render(_ctx) {
         this.clear()
         _ctx.fillStyle = '#FFF'
-        this.glyph_morph.draw(_ctx)
+        this.variation.draw(_ctx)
     }
     
 }
 
-const variation = new Variable()
+const variation = new VariableText()

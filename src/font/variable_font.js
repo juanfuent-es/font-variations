@@ -6,7 +6,6 @@ import { loadFont } from '../utils/fontloader'
  * https://freetype.org/freetype2/docs/glyphs/
  * https://learn.microsoft.com/es-es/typography/opentype/spec/featuretags
  */
-
 export default class VariableFont extends EventTarget {
     constructor(_source) {
         super();
