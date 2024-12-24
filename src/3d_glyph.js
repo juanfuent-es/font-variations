@@ -7,8 +7,6 @@ import './style.css'
 import VariableFont from './font/variable_font'
 import GlyphMorph from './font/glyph_morph'
 
-gsap.registerPlugin(MorphSVGPlugin)
-
 class MorphVariations {
     constructor() {
         this.container = document.body
@@ -17,7 +15,7 @@ class MorphVariations {
     }
     
     setup() {
-        const glyph_morph = new GlyphMorph('R', this.font)
+        const glyph_morph = new GlyphMorph('W', this.font)
         const svg = glyph_morph.createSVG()
 
         const path_a = glyph_morph.createSVGPath(glyph_morph.minGlyph.svgPathData, "#FFF", "start")
@@ -30,19 +28,6 @@ class MorphVariations {
         //
         this.container.appendChild(svg)
 
-        this.animate()
-    }
-
-
-    animate() {
-        // Requires GSAP license to work with MorphSVGPlugin on production
-        gsap.to("#path_a", {
-            duration: 2,
-            morphSVG: "#path_b",
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut"
-        });
     }
 
 }
