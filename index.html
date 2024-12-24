@@ -4,11 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VFont | JuanFuent.es</title>
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.2.2/dist/gsap.min.js"></script>
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js"></script>
-    <script type="module" src="/src/main.js"></script>
+    <main>
+      <h1>Variable Font</h1>
+      <p>This project demonstrates the use of variable fonts with different classes and functionalities.</p>
+      
+      <h2>Classes and Documents</h2>
+      <ul>
+        <li>
+          <a href="/variation.html">Text Variation</a>
+          <p>
+            The <strong>Variation</strong> class in <code>variation.js</code> loads a variable font and creates a text variation based on specified parameters such as weight and width. It then generates an SVG to display the text with the applied variations.
+          </p>
+        </li>
+        <li>
+          <a href="/morph_variation.html">Morph Variation</a>
+          <p>
+            The <strong>GlyphMorph</strong> class in <code>glyph_morph.js</code> interpolates between two variations of a glyph (minimum and maximum values of the axes) using GSAP for animation. It creates an SVG path for each variation and animates the transition between them.
+          </p>
+        </li>
+      </ul>
+    </main>
   </body>
 </html>

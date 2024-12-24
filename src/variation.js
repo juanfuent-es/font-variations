@@ -11,7 +11,7 @@ class VariableText extends Canvas {
         this.variation = new FontVariation({
             font: '/HubotSans.ttf',
             txt: 'Hello',
-            wght: 700,
+            wght: 900,
             wdth: 75
         })
         this.events()
