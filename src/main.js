@@ -21,24 +21,26 @@ class App extends Canvas {
     }
 
     setChars() {
-        for (let i = 0; i < this.txt.length; i++) {
-            const char = this.txt[i]
-            const glyphVariation = this.font.glyphVariation(char)
-            this.createCharFromGlyph(glyphVariation)
-        }
+        const glyph = this.font.glyphVariation("A", {
+            wght: 400,
+            wdth: 100
+        })
+        this.createChar(glyph)
+        // Example for text with the same variation. Default variation
+        const txt = this.font.textVariation("Hola")
+        for (let i = 0; i < txt.length; i++) this.createChar(txt[i])
     }
 
-    createCharFromGlyph(_glyph) {
-        const glyph = _glyph
-        const char = new Char(glyph.name, {
+    createChar(_glyph) {
+        const char = new Char(_glyph.name, {
             fontSize: this.fontSize,
-            commands: glyph.path.commands,
-            width: glyph.advanceWidth,
-            height: glyph.advanceHeight,
+            commands: _glyph.path.commands,
+            width: _glyph.advanceWidth,
+            height: _glyph.advanceHeight,
             scale: this.scale,
-            bbox: glyph.bbox,
+            bbox: _glyph.bbox,
             lineHeight: .75,
-            metrics: glyph._metrics
+            metrics: _glyph._metrics
         })
         this.chars.push(char)
     }
@@ -50,8 +52,8 @@ class App extends Canvas {
 
     render() {
         this.clear()
-        this.context.strokeStyle = "#FFF"
-        this.context.fillStyle = "#FF0"
+        this.context.strokeStyle = "#FF0"
+        this.context.fillStyle = "#F0F"
         this.drawChars(this.context)
     }
 
