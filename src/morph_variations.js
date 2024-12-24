@@ -20,11 +20,11 @@ class MorphVariations {
         const glyph_morph = new GlyphMorph('R', this.font)
         const svg = glyph_morph.createSVG()
 
-        const path_a = glyph_morph.createSVGPath(glyph_morph.minGlyph.svgPathData, "#FFF", "start")
+        const path_a = glyph_morph.createSVGPath(glyph_morph.minGlyph.svgPathData, "#FFF")
         path_a.setAttribute('id', "path_a");
         svg.appendChild(path_a)
         //
-        const path_b = glyph_morph.createSVGPath(glyph_morph.maxGlyph.svgPathData, "transparent", "end")
+        const path_b = glyph_morph.createSVGPath(glyph_morph.maxGlyph.svgPathData, "transparent")
         path_b.setAttribute('id', "path_b");
         svg.appendChild(path_b)
         //
