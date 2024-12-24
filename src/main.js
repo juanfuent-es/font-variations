@@ -12,15 +12,12 @@ class App extends Canvas {
         this.txt = "W"
         this.chars = []
         this.fontSize = 300
-        this.scale = 1 / 1024 * this.fontSize // 1024 default set value, see: https://github.com/foliojs/fontkit/blob/13bf703d6c01acbb3d36437ba90c119501186512/test/metadata.js
         // 
         this.font = new VFont('/HubotSans.ttf')
-        this.font.addEventListener('fontloaded', () => this.setChars())
-        this.setSize()
-        this.animate()
+        this.font.addEventListener('fontloaded', () => this.setup())
     }
 
-    setChars() {
+    setup() {
         const glyph = this.font.glyphVariation("A", {
             wght: 400,
             wdth: 100
@@ -29,6 +26,9 @@ class App extends Canvas {
         // Example for text with the same variation. Default variation
         const txt = this.font.textVariation("Hola")
         for (let i = 0; i < txt.length; i++) this.createChar(txt[i])
+        //
+        this.setSize()
+        this.animate()
     }
 
     createChar(_glyph) {
@@ -37,7 +37,6 @@ class App extends Canvas {
             commands: _glyph.path.commands,
             width: _glyph.advanceWidth,
             height: _glyph.advanceHeight,
-            scale: this.scale,
             bbox: _glyph.bbox,
             lineHeight: .75,
             metrics: _glyph._metrics

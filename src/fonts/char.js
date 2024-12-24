@@ -5,7 +5,7 @@ export default class Char {
         //
         this.fontSize = args.fontSize || 28
         this.lineHeight = this.fontSize * (args.lineHeight || .75)
-        this.scale = args.scale || 1
+        this.scale = 1 / 1024 * this.fontSize // 1024 default set value, see: https://github.com/foliojs/fontkit/blob/13bf703d6c01acbb3d36437ba90c119501186512/test/metadata.js        
         this.width = ~~(args.width * this.scale)
         this.height = ~~(args.height * this.scale)
         this.bbox = {}
@@ -22,7 +22,7 @@ export default class Char {
         this.metrics.leftBearing = _metrics.leftBearing * this.scale
         this.metrics.topBearing = _metrics.topBearing * this.scale
     }
-    
+
     setupBoundingBox(_bbox) {
         this.bbox.minX = _bbox.minX * this.scale
         this.bbox.minY = _bbox.minY * -this.scale
