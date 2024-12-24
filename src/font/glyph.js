@@ -1,4 +1,4 @@
-export default class Char {
+export default class Glyph {
     constructor(char, args = {}) {
         if (char === undefined) console.error("Char is required")
         this.char = char || ""
@@ -11,7 +11,6 @@ export default class Char {
         this.path = new Path2D()
         this.setupCommands(args.commands)
     }
-
     /*  
      * For more information about glpyh properties
      * @see: https://freetype.org/freetype2/docs/glyphs/glyphs-3.html
