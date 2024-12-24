@@ -1,18 +1,19 @@
 import './style.css'
-import Variation from './font/variation'
+import FontVariation from './font/variation'
 import Canvas from "./components/canvas"
 
-class App extends Canvas {
+class VariableText extends Canvas {
     constructor(_container) {
         super()
         this.container = document.querySelector("main")
         this.container.appendChild(this.canvas)
 
-        this.variation = new Variation({
+        this.variation = new FontVariation({
             font: '/HubotSans.ttf',
-            txt: 'Hello'
+            txt: 'Hello',
+            wght: 700,
+            wdth: 75
         })
-
         this.events()
     }
 
@@ -22,21 +23,17 @@ class App extends Canvas {
         this.animate()
     }
 
-    onResize() {
-        this.canvas.width = window.innerWidth
-        this.canvas.height = window.innerHeight
-    }
-
     animate() {
         requestAnimationFrame(() => this.animate())
-        this.render()
+        this.render(this.context)
     }
 
-    render() {
+    render(_ctx) {
         this.clear()
-        this.variation.draw(this.context)
+        _ctx.fillStyle = '#FFF'
+        this.variation.draw(_ctx)
     }
     
 }
 
-const vfont = new App()
+const variation = new VariableText()

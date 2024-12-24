@@ -7,7 +7,7 @@ import { loadFont } from '../utils/fontloader'
  * https://learn.microsoft.com/es-es/typography/opentype/spec/featuretags
  */
 
-export default class VFont extends EventTarget {
+export default class VariableFont extends EventTarget {
     constructor(_source) {
         super();
         if (!_source) throw new Error("VFont: No source provided");

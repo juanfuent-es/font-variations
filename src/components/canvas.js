@@ -9,7 +9,7 @@ export default class Canvas {
         this.context = this.canvas.getContext("2d")
     }
 
-    setSize(_width = window.innerWidth, _height = window.innerHeight) {
+    onResize(_width = window.innerWidth, _height = window.innerHeight) {
         this.width = window.innerWidth * window.PX_RATIO
         this.height = window.innerHeight * window.PX_RATIO
         this.canvas.width = this.width

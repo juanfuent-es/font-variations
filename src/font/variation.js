@@ -1,27 +1,28 @@
-import VFont from './vfont'
+import VariableFont from './variable_font'
 import Glyph from './glyph'
 
 export default class Variation {
     constructor(params) {
-        this.txt = params.txt
+        if (!params.font) throw new Error('Font is required')
+        this.txt = params.txt || "Hello"
         this.glyphs = []
         this.fontSize = 300
-        this.font = new VFont(params.font)
+        this.wght = params.wght || 400
+        this.wdth = params.wdth || 100
+        // Load font
+        this.font = new VariableFont(params.font)
         this.font.addEventListener('fontloaded', () => this.setup())
     }
 
     setup() {
-        const glyph = this.font.glyphVariation("A", {
-            wght: 400,
-            wdth: 100
-        })
-        this.createChar(glyph)
+        // const glyph = this.font.glyphVariation("A", this.variation)
+        // this.createGlyph(glyph)
         // Example for text with the same variation. Default variation
-        const txt = this.font.textVariation(this.txt)
-        for (let i = 0; i < txt.length; i++) this.createChar(txt[i])
+        const txt = this.font.textVariation(this.txt, this.variation)
+        for (let i = 0; i < txt.length; i++) this.createGlyph(txt[i], this.variation)
     }
 
-    createChar(_glyph) {
+    createGlyph(_glyph) {
         const glyph = new Glyph(_glyph.name, {
             fontSize: this.fontSize,
             commands: _glyph.path.commands,
@@ -42,6 +43,13 @@ export default class Variation {
                 offset_x: offset_x
             })
             offset_x += glyph.width
+        }
+    }
+
+    get variation() {
+        return {
+            wght: this.wght,
+            wdth: this.wdth
         }
     }
 
