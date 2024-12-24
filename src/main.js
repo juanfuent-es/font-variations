@@ -1,7 +1,7 @@
 import './style.css'
 import Canvas from "./canvas.js"
-import Char from "./fonts/char"
-import VFont from './vfont.js'
+import Char from "./font/char.js"
+import VFont from './font/vfont.js'
 
 class App extends Canvas {
     constructor(_container) {
@@ -24,7 +24,7 @@ class App extends Canvas {
         })
         this.createChar(glyph)
         // Example for text with the same variation. Default variation
-        const txt = this.font.textVariation("Hola")
+        const txt = this.font.textVariation("Hello")
         for (let i = 0; i < txt.length; i++) this.createChar(txt[i])
         //
         this.setSize()
