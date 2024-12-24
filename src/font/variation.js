@@ -1,6 +1,24 @@
+/*
+* Variation
+* @author: JuanFuent.es
+* @version: 0.0.1
+* @description Create a text variation from a variable font
+* @example
+* const variation = new Variation({
+*     font: 'fonts/Roboto-VF.ttf',
+*     txt: 'Hello',
+*     wght: 400,
+*     wdth: 100
+* })
+* Load a variable font and create a text variation
+* @param {Object} params
+* @param {String} params.font - Font path
+* @param {String} params.txt - Text to display
+* @param {Number} params.wght - Weight
+* @param {Number} params.wdth - Width
+*/
 import VariableFont from './variable_font'
 import Glyph from './glyph'
-
 export default class Variation {
     constructor(params) {
         if (!params.font) throw new Error('Font is required')

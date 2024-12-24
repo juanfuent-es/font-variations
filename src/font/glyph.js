@@ -1,3 +1,13 @@
+/*
+    * Glyph class
+    * @param {String} char - Character
+    * @param {Object} args - Glyph properties
+    * @param {Number} args.fontSize - Font size
+    * @param {Number} args.lineHeight - Line height
+    * @param {Number} args.width - Width
+    * @param {Number} args.height - Height
+    * @param {Array} args.commands - Path commands
+*/
 export default class Glyph {
     constructor(char, args = {}) {
         this.char = char || ""

@@ -1,10 +1,8 @@
 import { loadFont } from '../utils/fontloader'
-
-/*
- * REFERENCES
- * https://github.com/github/hubot-sans
- * https://freetype.org/freetype2/docs/glyphs/
- * https://learn.microsoft.com/es-es/typography/opentype/spec/featuretags
+/**
+ * Class representing a variable font
+ * @extends EventTarget
+ * @example const font = new VariableFont('fonts/Roboto-VF.ttf')
  */
 export default class VariableFont extends EventTarget {
     constructor(_source) {

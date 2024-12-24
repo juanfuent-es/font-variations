@@ -1,3 +1,9 @@
+/*
+    * Morphing between two glyphs using GSAP MorphSVGPlugin
+    * @param {String} glyphName - Glyph name
+    * @param {Object} font - Variable font object
+    * @example const morph = new GlyphMorph('A', font)
+*/
 gsap.registerPlugin(MorphSVGPlugin)
 
 import Glyph from './glyph'

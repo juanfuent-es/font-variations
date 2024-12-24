@@ -1,8 +1,9 @@
 import './style.css'
 import VariableFont from './font/variable_font'
 import GlyphMorph from './font/glyph_morph'
-class VariableSVG {
-    constructor(_container) {
+
+class MorphVariations {
+    constructor() {
         this.font = new VariableFont('/HubotSans.ttf')
         this.font.addEventListener('fontloaded', () => this.setup())
     }
@@ -15,4 +16,4 @@ class VariableSVG {
 
 }
 
-const variation = new VariableSVG()
+const variation = new MorphVariations()
